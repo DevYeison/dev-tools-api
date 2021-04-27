@@ -1,0 +1,140 @@
+{
+    "swagger": "4.1.6",
+    "info": {
+      "description": "Swagger documentation for Dev|Tools API",
+      "version": "1.0.0",
+      "title": "Dev|Tools - Swagger",
+      "contact": {
+        "email": "garzontoroyeison@gmail.com"
+      },
+      "license": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      }
+    },
+    "host": "localhost:4000",
+    "basePath": "/1/api",
+    "tags": [
+      {
+        "name": "Resource",
+        "description": "Interesting resources for Dev|Tools web page"
+      }
+    ],
+    "schemes": ["http", "https"],
+    "paths": {
+      "/resource": {
+        "get": {
+          "tags": ["Resources"],
+          "summary": "Finds All the Resources",
+          "description": "Find resources in DB",
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "name": "pageNum",
+              "type": "number",
+              "in": "query",
+              "required": false
+            },
+            {
+              "name": "pageSize",
+              "type": "number",
+              "in": "query",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Resource"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/resource/{id}": {
+        "get": {
+          "tags": ["Resource"],
+          "summary": "Find one resource",
+          "description": "Find one resource in DB",
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "type": "string",
+              "description": "Resource Id",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Resource"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid tag value"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Resource": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "topics": [
+            {
+              "topic": {
+                "type": "string"
+              },
+              "explanation": {
+                "type": "string"
+              },
+              "images": [
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          ],
+          "conclusion": {
+            "type": "string"
+          },
+          "links": [
+            {
+              "name": {
+                "type": "string"
+              },
+              "link": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
